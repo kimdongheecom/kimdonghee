@@ -42,19 +42,29 @@ def calc():
    else:
       return render_template("calculator/calc.html")
                            
-@app.route('/login',methods=["post"])
-def login2():
+@app.route('/login',methods=["POST, GET"])
+def login(): #함수가 실행될 때 로그인 처리를 담당, 사용자가 로그인 정보를 입력하고 제출하면, Flask가 login() 함수를 실행
+    
+   login_Failed = False
+
+   if request.method == 'POST' :
+   
    print("😁로그인 알고리즘")
+   
    username= request.form.get('username')
    password= request.form.get('password')
+   
    print("😉username:", username)
    print("🙄passworld:", password)
-   if username == "hong" and password == "1234":
+   
+   if username == "kdh" and password == "1234":
        print("😎로그인 성공")
        return redirect(url_for('home'))
    else:
+       login_failed = True
+
        print("😥로그인 실패")
-       return render_template("auth/fail.html")
+   return render_template("login.html", login_failed=login_failed)
 
 @app.route('/manufacture_fin_review')
 def manufacture_fin_review():

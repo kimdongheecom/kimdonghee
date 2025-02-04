@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>로그인</title>
     <style>
         table {
             width: 300px;
@@ -23,6 +23,13 @@
     </style>
 </head>
 <body>
+    <div class="login-container">
+        <h2>로그인</h2>
+
+        {% if login_failed %}
+        <p style="color:red;"> 아이디 or 비밀번호를 다시 확인해주세요.</p> # 이 부분은 fail.html에서 가져온 부분
+        {% endif %}
+
     <form action="/login" method="post">
         <table border="1">
             <tr>
