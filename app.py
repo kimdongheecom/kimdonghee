@@ -18,20 +18,15 @@ def plus():
 
 @app.route('/plus2', methods=["post"])
 def plus2():
-    print("계산 알고리즘")
+    print("플러스 알고리즘")
     num1= request.form.get('num1')
     num2= request.form.get('num2')
     print("🙂num1 :", num1)
-    print("😮num2:", num2)
-    if num1 == "1" and num2 == "2":
-       
-       print(f"{num1}+{num2}={num1+num2}")
-       
-       print("😎계산 성공")
-       return redirect(url_for(''))
-    else:
-       print("😥계산 실패")
-       return redirect(url_for('intro'))
+    print("😮num2 :", num2)
+    num3 = int(num1) + int(num2) 
+    print(f"{num1}+{num2}={num3}")
+    print("😎플러스 성공")
+    return render_template("answer/plus.html", num1 = num1, num2 = num2, num3 = num3)
    
 @app.route('/login',methods=["post"])
 def login2():
@@ -40,18 +35,12 @@ def login2():
     password= request.form.get('password')
     print("😉username:", username)
     print("🙄passworld:", password)
-    if username == "hong" and password == "1234"
+    if username == "hong" and password == "1234":
        print("😎로그인 성공")
        return redirect(url_for('home'))
-    else
+    else:
        print("😥로그인 실패")
-       return redirect(url_for('intro'))
-
-
-
-
-
-
+       return render_template("auth/fail.html")
 
 @app.route('/minus')
 def minus():
@@ -59,19 +48,55 @@ def minus():
    #return 'This is Home! 헬로우 월드 5'
    return render_template("calculator/minus.html")
 
+@app.route('/minus2', methods=["post"])
+def minus2():
+    print("마이너스 알고리즘")
+    num1= request.form.get('num1')
+    num2= request.form.get('num2')
+    print("🙂num1 :", num1)
+    print("😮num2 :", num2)
+    num3 = int(num1) - int(num2) 
+    print(f"{num1}-{num2}={num3}")
+    print("😎마이너스 성공")
+    return render_template("answer/minus.html", num1 = num1, num2 = num2, num3 = num3)
+   
+
 @app.route('/multiple')
 def multiple():
    #print("🛕This is Home! 헬로우 월드 5")
    #return 'This is Home! 헬로우 월드 5'
    return render_template("calculator/multiple.html")
 
+@app.route('/multiple2', methods=["post"])
+def multiple2():
+    print("멀티플 알고리즘")
+    num1= request.form.get('num1')
+    num2= request.form.get('num2')
+    print("🙂num1 :", num1)
+    print("😮num2 :", num2)
+    num3 = int(num1) * int(num2) 
+    print(f"{num1}*{num2}={num3}")
+    print("😎멀티플 성공")
+    return render_template("answer/multiple.html", num1 = num1, num2 = num2, num3 = num3)
+   
 @app.route('/divide')
 def divide():
    #print("🛕This is Home! 헬로우 월드 5")
    #return 'This is Home! 헬로우 월드 5'
    return render_template("calculator/divide.html")
 
-
+@app.route('/divide2', methods=["post"])
+def divide2():
+    print("디바이드 알고리즘")
+    num1= request.form.get('num1')
+    num2= request.form.get('num2')
+    print("🙂num1 :", num1)
+    print("😮num2 :", num2)
+    num3 = int(num1) / int(num2) 
+    print(f"{num1}/{num2}={num3}")
+    print("😎디바이드 성공")
+    return render_template("answer/divide.html", num1 = num1, num2 = num2, num3 = num3)
+   
 @app.route('/manufacture_fin_review')
 def manufacture_fin_review():
 
