@@ -1,0 +1,75 @@
+<!-- abac -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>할인 계산기</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            padding: 10px;
+            font-size: 18px;
+            width: 200px;
+            text-align: center;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+        .discount-message {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+            height: 30px;
+            color: #d9534f;
+        }
+
+        /* 할인율 표시를 위한 스타일 */
+        input:valid + .discount-message::before {
+            content: "할인 없음";
+            color: black;
+        }
+
+        input:valid[value^="1"], 
+        input:valid[value^="2"], 
+        input:valid[value^="3"], 
+        input:valid[value^="4"], 
+        input:valid[value^="5"], 
+        input:valid[value^="6"], 
+        input:valid[value^="7"], 
+        input:valid[value^="8"], 
+        input:valid[value^="9"] {
+            content: "5% 할인 적용!";
+            color: #28a745;
+        }
+
+        input:valid[value^="1"][value$="00000"],
+        input:valid[value^="2"][value$="00000"],
+        input:valid[value^="3"][value$="00000"],
+        input:valid[value^="4"][value$="00000"],
+        input:valid[value^="5"][value$="00000"],
+        input:valid[value^="6"][value$="00000"],
+        input:valid[value^="7"][value$="00000"],
+        input:valid[value^="8"][value$="00000"],
+        input:valid[value^="9"][value$="00000"],
+        input:valid[value^="100"] {
+            content: "10% 할인 적용!";
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <h2>할인 계산기</h2>
+    <p>100만 원 이상: <strong>10% 할인</strong></p>
+    <p>2만 원 이상: <strong>5% 할인</strong></p>
+    <form action ="/discount" method = "post"></form>
+    <label for="amount">금액을 입력하세요:</label>
+    <input type="number" id="amount" name="amount" required min="0">
+    <button type="submit">계산하기</button>
+    
+    <div class="discount-message"></div>
+</body>
+</html>
