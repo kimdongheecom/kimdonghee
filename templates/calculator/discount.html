@@ -1,4 +1,4 @@
-<!-- abac -->
+<!-- 금액을 입력받아서 100만원 이상이면 10% 할인, 미만이면 5% 할인되는 html 을 작성해줘. -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -11,65 +11,54 @@
             text-align: center;
             margin: 50px;
         }
-        input {
+        input, button {
             padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        .notice {
+            border: 2px solid #ddd;
+            padding: 20px;
+            width: 60%;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+        h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
             font-size: 18px;
-            width: 200px;
-            text-align: center;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-        }
-        .discount-message {
-            font-size: 20px;
-            font-weight: bold;
-            margin-top: 10px;
-            height: 30px;
-            color: #d9534f;
-        }
-
-        /* 할인율 표시를 위한 스타일 */
-        input:valid + .discount-message::before {
-            content: "할인 없음";
-            color: black;
-        }
-
-        input:valid[value^="1"], 
-        input:valid[value^="2"], 
-        input:valid[value^="3"], 
-        input:valid[value^="4"], 
-        input:valid[value^="5"], 
-        input:valid[value^="6"], 
-        input:valid[value^="7"], 
-        input:valid[value^="8"], 
-        input:valid[value^="9"] {
-            content: "5% 할인 적용!";
-            color: #28a745;
-        }
-
-        input:valid[value^="1"][value$="00000"],
-        input:valid[value^="2"][value$="00000"],
-        input:valid[value^="3"][value$="00000"],
-        input:valid[value^="4"][value$="00000"],
-        input:valid[value^="5"][value$="00000"],
-        input:valid[value^="6"][value$="00000"],
-        input:valid[value^="7"][value$="00000"],
-        input:valid[value^="8"][value$="00000"],
-        input:valid[value^="9"][value$="00000"],
-        input:valid[value^="100"] {
-            content: "10% 할인 적용!";
-            color: #007bff;
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
     <h2>할인 계산기</h2>
-    <p>100만 원 이상: <strong>10% 할인</strong></p>
-    <p>2만 원 이상: <strong>5% 할인</strong></p>
-    <form action ="/discount" method = "post"></form>
-    <label for="amount">금액을 입력하세요:</label>
-    <input type="number" id="amount" name="amount" required min="0">
-    <button type="submit">계산하기</button>
-    
-    <div class="discount-message"></div>
+    <div class="notice">
+        <h2>📢 할인 정책 안내 📢</h2>
+        <p>고객님께서 입력하신 금액에 따라 아래와 같이 할인이 적용됩니다.</p>
+        <ul>
+            <li><strong>💰 100,000원 이상</strong> → 10% 할인</li>
+            <li><strong>💰 50,000원 이상</strong> → 5% 할인</li>
+            <li><strong>💰 10,000원 이상</strong> → 3% 할인</li>
+            <li><strong>💰 10,000원 미만</strong> → 1% 할인</li>
+        </ul>
+        <p>할인 금액은 자동으로 계산되며, 최종 결제 금액에서 차감됩니다.</p>
+        <p>항상 저희 서비스를 이용해 주셔서 감사합니다! 😊</p>
+    </div>
+    <form action="/discount" method="post">
+        <label for="amount">금액 입력 (원):</label>
+        <input type="number" id="amount" name="amount" placeholder="금액을 입력하세요">
+        <button type="submit">계산하기</button>
+    </form>
+    <p>
+    {{ render_html | default('') | safe }}
+    </p>
+     
 </body>
 </html>

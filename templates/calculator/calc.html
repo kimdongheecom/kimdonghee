@@ -13,10 +13,12 @@
         <input type="text" id="num2" placeholder="두번째 수" name="num2">
         <button type="submit" id="plus">결과보기</button>
     </form>
-
-    {% if result %}
+    <p>
+    {{ render_html | default('') | safe }}
+    </p>
+    <!-- {% if result %}
     <H3>계산결과 :</H3>
     <h2>{{num1}} {{opcode}} {{num2}} = {{result}}</h2>
-    {% endif %}
+    {% endif %} -->
 </body>
 </html>

@@ -1,6 +1,7 @@
 
 from flask import redirect, url_for
-from com.kimdonghee.auth.login_model import LoginModel
+from com.kimdnghee.auth.login_model import LoginModel
+
 
 
 class LoginService: #첫번째로, 먼저 만들기(controller 포함).... 모델만 다르고,

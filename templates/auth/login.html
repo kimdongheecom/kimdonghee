@@ -1,25 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e8f5e9;
+            margin: 0;
+        }
+        .login-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 2px solid #2e7d32;
+            width: 320px;
+        }
+        h2 {
+            color: #2e7d32;
+        }
         table {
-            width: 300px;
+            width: 100%;
             border-collapse: collapse;
-            margin: 50px auto;
         }
         td {
             padding: 10px;
         }
         input[type="text"], input[type="password"] {
             width: 100%;
-            padding: 5px;
+            padding: 8px;
+            border: 2px solid #2e7d32;
+            border-radius: 5px;
+            font-size: 14px;
         }
         .button-cell {
             text-align: center;
-        }        
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #388e3c;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background-color: #1b5e20;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -27,25 +69,26 @@
         <h2>로그인</h2>
 
         {% if login_failed %}
-        <p style="color:red;"> 아이디 or 비밀번호를 다시 확인해주세요.</p> # 이 부분은 fail.html에서 가져온 부분
+        <p class="error-message">아이디 or 비밀번호를 다시 확인해주세요.</p>
         {% endif %}
 
-    <form action="/login" method="POST">
-        <table border="1">
-            <tr>
-                <td>아이디</td>
-                <td><input type="text" name="username" required></td>
-            </tr>
-            <tr>
-                <td>비밀번호</td>
-                <td><input type="password" name="password" required></td>
-            </tr>
-            <tr>
-                <td colspan="2" class="button-cell">
-                    <button type="submit">로그인</button>
-                </td>
-            </tr>
-        </table>
-    </form>
+        <form action="/login" method="POST">
+            <table>
+                <tr>
+                    <td>아이디</td>
+                    <td><input type="text" name="username" required></td>
+                </tr>
+                <tr>
+                    <td>비밀번호</td>
+                    <td><input type="password" name="password" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="button-cell">
+                        <button type="submit">로그인</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </body>
 </html>
